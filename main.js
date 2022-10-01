@@ -13,8 +13,10 @@ function getServerData(url){
 
 function startGetPrice() {
 	getServerData("https://adam-psztr.github.io/bestPrice.src/products.json").then(
-		data => console.log(data)
+		data => data = data
 	);
 }
+
+let data;
 
 startGetPrice();
