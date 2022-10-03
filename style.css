@@ -69,11 +69,40 @@ a {
 	color: inherit;
 }
 
+header.mainHeader {
+	grid-area: 1/1/2/4;
+	align-self: end;
+	text-align: center;
+}
+
+header.mainHeader input#search {
+	background: none;
+	border: none;
+	border-bottom: 2px solid var(--sunray);
+	width: 50%;
+	font-size: .8rem;
+}
+
+header.mainHeader input,
+header.mainHeader input::placeholder,
+header.mainHeader label span.material-symbols-outlined {
+	color: var(--sunray);
+}
+
+header.mainHeader input,
+header.mainHeader input::placeholder {
+	text-align: center;
+	letter-spacing: .1rem;
+}
+
+header.mainHeader input,
+header.mainHeader label span {
+	vertical-align: middle;
+}
 
 main {
 	grid-area: 2/2/3/3;
 	overflow-y: scroll;
-	padding: 0 3px;
 }
 
 main > article.bestPrice {
@@ -85,7 +114,7 @@ main > article.bestPrice {
 }
 
 main > article.bestPrice:hover {
-	box-shadow: 0 0 3px var(--sunray);
+	box-shadow: 0 0 5px var(--sunray) inset;
 }
 
 main > article.bestPrice header {

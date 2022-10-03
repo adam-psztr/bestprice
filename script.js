@@ -19,7 +19,7 @@ function startGetPrice() {
 
 let querydata;
 
-startGetPrice();
+// startGetPrice();
 
 // function proba(data){
 // 	querydata = data.queries;
@@ -41,3 +41,8 @@ startGetPrice();
 
 // var date      = new Date();
 // var timestamp = date.getTime();
+
+
+document.querySelector("main > article.bestPrice").addEventListener('click',()=>{
+	document.querySelector("main article.sellerBox").style.height = document.querySelector("main article.sellerBox .wrapper").clientHeight + document.querySelector("main article.sellerBox .chartBox").clientHeight + "px";
+})
