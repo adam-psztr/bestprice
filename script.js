@@ -32,9 +32,8 @@ function showProductPrice() {
 	
 	for(let i=0; i<productsList.length; i++) {
 		productsListItem = productsList[i];
-		mainProductName = querydata[productsListItem].productName;
-		// subProductName = querydata[productsListItem].subProductName;
-		subProductName = "proba";
+		mainProductName = querydata[productsListItem].mainProductName;
+		subProductName = querydata[productsListItem].subProductName;
 		productSeller = [], productName = [], productPrice = [], productLink = [];
 
 		for(let j=0; j<querydata[productsList[i]].productSellers.length; j++) {
@@ -169,8 +168,13 @@ function makeProductPriceElement(queryDate, productsListItem, mainProductName, s
 function mainFunctions() {
 	let open = false
 	
+	// document.querySelectorAll("main > article.bestPrice").forEach((el)=> el.addEventListener('click',()=>{
+	// 	open ? document.querySelector("main article.sellerBox").style.height = "0" : document.querySelector("main article.sellerBox").style.height = document.querySelector("main article.sellerBox .wrapper").clientHeight + document.querySelector("main article.sellerBox .chartBox").clientHeight + "px";
+	// 	open = !open;
+	// }))
+
 	document.querySelectorAll("main > article.bestPrice").forEach((el)=> el.addEventListener('click',()=>{
-		open ? document.querySelector("main article.sellerBox").style.height = "0" : document.querySelector("main article.sellerBox").style.height = document.querySelector("main article.sellerBox .wrapper").clientHeight + document.querySelector("main article.sellerBox .chartBox").clientHeight + "px";
+		open ? document.querySelector("main article.sellerBox").style.height = "0" : document.querySelector("main article.sellerBox").style.height = document.querySelector("main article.sellerBox .wrapper").clientHeight + "px";
 		open = !open;
 	}))
 	

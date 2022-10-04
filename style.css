@@ -205,44 +205,45 @@ main article.sellerBox {
 	overflow: hidden;
 	height: auto;
 	transition: height .5s ease-in-out;
+	width: calc(100% - 4rem);
+	margin: 0 auto;
 }
 
 main article.sellerBox div.wrapper {
-	width: calc(100% - 4rem);
-	margin: 0 auto;
-	background-color: var(--gray-web);
 	display: flex;
 }
 
-main article.sellerBox div.wrapper div.radius {
+main article.sellerBox div.radius {
 	width: 2rem;
 	align-items: stretch;
 	background-color: var(--gray-web);
+	background: linear-gradient(var(--gray-web), var(--sunray));
 }
 
-main article.sellerBox div.wrapper div.innerRadius {
+main article.sellerBox div.radius div.innerRadius {
 	width: 2rem;
 	height: 100%;
 	background-color: var(--eerie-black);
 }
 
-main article.sellerBox div.wrapper div.innerRadius.radLeft {
+main article.sellerBox div.radius div.innerRadius.radLeft {
 	border-top-right-radius: 2rem;
-	border-bottom-right-radius: 2rem;
 }
 
-main article.sellerBox div.wrapper div.innerRadius.radRight {
+main article.sellerBox div.radius div.innerRadius.radRight {
 	border-top-left-radius: 2rem;
-	border-bottom-left-radius: 2rem;
 }
 
-main article.sellerBox div.wrapper article.sellers {
+main article.sellerBox article.sellers {
 	flex-grow: 2;
 	overflow: hidden;
-	padding-left: .3rem;
+	padding: .7rem .5rem .7rem .7rem;
+	border-bottom-right-radius: 2rem;
+	border-bottom-left-radius: 2rem;
+	background: linear-gradient(var(--gray-web), var(--sunray));
 }
 
-main article.sellerBox div.wrapper article.sellers section.seller {
+main article.sellerBox article.sellers section.seller {
 	display: grid;
 	grid-template-columns: 50px 2fr 1fr 40px;
 	grid-template-rows: 50px;
@@ -250,45 +251,41 @@ main article.sellerBox div.wrapper article.sellers section.seller {
 	margin-top: .3rem;
 }
 
-main article.sellerBox div.wrapper article.sellers section.seller:last-child {
-	margin-bottom: .3rem;
-}
-
-main article.sellerBox div.wrapper article.sellers section.seller .sellerLogo {
+main article.sellerBox article.sellers section.seller .sellerLogo {
 	border-radius: .3rem;
 	overflow: hidden;
 }
 
-main article.sellerBox div.wrapper article.sellers section.seller .sellerProductName,
-main article.sellerBox div.wrapper article.sellers section.seller .sellerProductPrice,
-main article.sellerBox div.wrapper article.sellers section.seller .goPageLink {
+main article.sellerBox article.sellers section.seller .sellerProductName,
+main article.sellerBox article.sellers section.seller .sellerProductPrice,
+main article.sellerBox article.sellers section.seller .goPageLink {
 	align-self: center;
 	margin-left: .3rem;
 }
 
-main article.sellerBox div.wrapper article.sellers section.seller .sellerProductName h4 {
+main article.sellerBox article.sellers section.seller .sellerProductName h4 {
 	font-size: .9rem;
 }
 
-main article.sellerBox div.wrapper article.sellers section.seller .sellerProductPrice {
+main article.sellerBox article.sellers section.seller .sellerProductPrice {
 	text-align: end;
 	white-space: nowrap;
 }
 
-main article.sellerBox div.wrapper article.sellers section.seller .sellerProductPrice h3 {
+main article.sellerBox article.sellers section.seller .sellerProductPrice h3 {
 	font-size: 1rem;
 }
 
-main article.sellerBox div.wrapper article.sellers section.seller .goPageLink{
-	text-align: center;
+main article.sellerBox article.sellers section.seller .goPageLink{
+	text-align: right;
 }
 
-main article.sellerBox div.wrapper article.sellers section.seller .goPageLink a span.material-symbols-outlined {
+main article.sellerBox article.sellers section.seller .goPageLink a span.material-symbols-outlined {
 	vertical-align: middle;
-	padding: .3rem;
+	padding: .2rem;
 }
 
-main article article.chartBox {
+/* main article article.chartBox {
 	overflow: hidden;
 	height: 150px;
 	width: 100%;
@@ -357,7 +354,7 @@ main article article.chartBox div.bottomLine {
 main article article.chartBox div.bottomLine .queryDate {
 	text-align: center;
 	padding: .1rem 1rem;
-}
+} */
 
 
 
