@@ -26,6 +26,8 @@ function showProductPrice() {
 
 	document.querySelector("main").innerHTML = "";
 
+	let queryDate = new Date(querydata.queryDate).toLocaleDateString("hu-HU") + " (" + new Date(querydata.queryDate).toLocaleTimeString("hu-HU") + ")";
+
 	let mainProductName, subProductName, productSeller = [], productName = [], productPrice = [], productLink = [];
 	
 	for(let i=0; i<productsList.length; i++) {
@@ -43,12 +45,12 @@ function showProductPrice() {
 		};
 
 		if (filter(mainProductName)) {
-			makeProductPriceElement(productsListItem, mainProductName, subProductName, productSeller, productName, productPrice, productLink);
+			makeProductPriceElement(queryDate, productsListItem, mainProductName, subProductName, productSeller, productName, productPrice, productLink);
 		}
 	}
 }
 
-function makeProductPriceElement(productsListItem, mainProductName, subProductName, productSeller, productName, productPrice, productLink) {
+function makeProductPriceElement(queryDate, productsListItem, mainProductName, subProductName, productSeller, productName, productPrice, productLink) {
 	
 	let bestPrice = Math.min(...productPrice).toLocaleString('hu-HU');
 
@@ -65,7 +67,7 @@ function makeProductPriceElement(productsListItem, mainProductName, subProductNa
 		<span class="separator"></span>
 		<div class="productMinPrice">
 		<h2>${bestPrice} Ft</h2>
-		<h5>${bestPrice}</h5>
+		<h5>${queryDate}</h5>
 		</div>
 		</header>
 		</article>
@@ -82,13 +84,13 @@ function makeProductPriceElement(productsListItem, mainProductName, subProductNa
 		let sampleSeller = `
 			<section class="seller">
 			<div class="sellerLogo">
-			<img src="https://via.placeholder.com/50x50.png?text=${productSeller[k]}" alt="">
+			<img src="https://via.placeholder.com/50x50.png?text=${productSeller[k]}" alt="${productSeller[k]} logo">
 			</div>
 			<div class="sellerProductName">
 			<h4>${productName[k]}</h4>
 			</div>
 			<div class="sellerProductPrice">
-			<h3>${parseInt(productPrice[k]).toLocaleString('hu-HU')}Ft</h3>
+			<h3>${parseInt(productPrice[k]).toLocaleString('hu-HU')} Ft</h3>
 			</div>
 			<div class="goPageLink">
 			<a href="${productLink[k]}" target="_blank">
@@ -164,28 +166,6 @@ function makeProductPriceElement(productsListItem, mainProductName, subProductNa
 	mainFunctions()
 }
 
-
-// function proba(data){
-// 	querydata = data.queries;
-// 	document.querySelector("#p1").innerText = querydata[0]["iphone-14-pro"]["productSellers"][1]["productSeller"];
-// 	document.querySelector("#p2").innerText = querydata[0]["iphone-14-pro"]["productSellers"][1]["productName"];
-// 	document.querySelector("#p3").innerText = querydata[0]["iphone-14-pro"]["productSellers"][1]["productPrice"];
-// }
-
-// date = date.toLocaleDateString("hu", {
-// 	day: "numeric",
-// 	month: "short",
-// 	year: "numeric"
-// });
-
-// const date = new Date();
-// const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
-// const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
-
-
-// var date      = new Date();
-// var timestamp = date.getTime();
-
 function mainFunctions() {
 	let open = false
 	
@@ -211,4 +191,4 @@ searchInput.addEventListener('keyup', () => {
 	showProductPrice();
 });
 
-// startGetPrice();
+startGetPrice();
