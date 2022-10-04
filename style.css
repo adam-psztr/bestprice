@@ -147,7 +147,7 @@ main > article.bestPrice header .productPic img {
 
 main > article.bestPrice header span.separator {
 	height: 100%;
-	width: 3px;
+	width: 1px;
 	background-color: var(--sunray);
 	opacity: .5;
 }
@@ -203,8 +203,8 @@ main > article header span.material-symbols-outlined {
 
 main article.sellerBox {
 	overflow: hidden;
-	height: 0;
-	transition: height 1s ease-in-out;
+	height: auto;
+	transition: height .5s ease-in-out;
 }
 
 main article.sellerBox div.wrapper {
