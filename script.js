@@ -18,7 +18,7 @@ function startGetPrice() {
 }
 	
 function saveServerData(data) {
-	querydata = data.queries[0];
+	querydata = data.queries;
 	showProductPrice();
 }
 
@@ -26,17 +26,26 @@ function showProductPrice() {
 
 	document.querySelector("main").innerHTML = "";
 
-	let queryDate = new Date(querydata.queryDate).toLocaleDateString("hu-HU") + " (" + new Date(querydata.queryDate).toLocaleTimeString("hu-HU") + ")";
+	productsList = querydata.sortArray[productsListSortData];
 
+	let queryDate;
+	
 	let mainProductName, subProductName, productSeller = [], productName = [], productPrice = [], productLink = [];
 	
 	for(let i=0; i<productsList.length; i++) {
 		productsListItem = productsList[i];
+		queryDate = new Date(querydata[productsListItem].queryDate).toLocaleDateString("hu-HU") + " (" + new Date(querydata[productsListItem].queryDate).toLocaleTimeString("hu-HU") + ")";
 		mainProductName = querydata[productsListItem].mainProductName;
 		subProductName = querydata[productsListItem].subProductName;
 		productSeller = [], productName = [], productPrice = [], productLink = [];
-
+		
 		for(let j=0; j<querydata[productsList[i]].productSellers.length; j++) {
+			if(!querydata[productsListItem].productSellers[j] ||
+				querydata[productsList[i]].productSellers[j].productSeller == "X" ||
+				querydata[productsList[i]].productSellers[j].productName == "X" ||
+				querydata[productsList[i]].productSellers[j].productPrice == "0") {
+				continue;
+			};
 			productSeller.push(querydata[productsList[i]].productSellers[j].productSeller);
 			productName.push(querydata[productsList[i]].productSellers[j].productName);
 			productPrice.push(querydata[productsList[i]].productSellers[j].productPrice);
@@ -49,9 +58,18 @@ function showProductPrice() {
 	}
 }
 
+function filter(mainProductName) {
+	let input = searchInput.value.toLowerCase();
+	return !(mainProductName.toLowerCase().indexOf(input) == -1);
+}
+
 function makeProductPriceElement(queryDate, productsListItem, mainProductName, subProductName, productSeller, productName, productPrice, productLink) {
 	
 	let bestPrice = Math.min(...productPrice).toLocaleString('hu-HU');
+
+	if(bestPrice == 0) {
+		return
+	};
 
 	let sampleHeader = `<article class="bestPrice">
 		<header>
@@ -107,58 +125,6 @@ function makeProductPriceElement(queryDate, productsListItem, mainProductName, s
 		</div>
 		</div>
 		</article>`;
-
-	let sampleChart = `
-		<article class="chartBox">
-		<section class="query">
-		<div class="topLine">
-		<div class="chart">
-		<img src="https://via.placeholder.com/50/0000FF/808080?Text=Sellet Logo" alt="">
-		</div>
-		<div class="chart">
-		<img src="https://via.placeholder.com/50/0000FF/808080?Text=Sellet Logo" alt="">
-		</div>
-		<div class="chart">
-		<img src="https://via.placeholder.com/50/0000FF/808080?Text=Sellet Logo" alt="">
-		</div>
-		<div class="chart">
-		<img src="https://via.placeholder.com/50/0000FF/808080?Text=Sellet Logo" alt="">
-		</div>
-		<div class="chart">
-		<img src="https://via.placeholder.com/50/0000FF/808080?Text=Sellet Logo" alt="">
-		</div>
-		</div>
-		<div class="bottomLine">
-		<div class="queryDate">
-		<p>22.06.01</p>
-		</div>
-		</div>
-		</section>
-		<section class="query">
-		<div class="topLine">
-		<div class="chart">
-		<img src="https://via.placeholder.com/50/0000FF/808080?Text=Sellet Logo" alt="">
-		</div>
-		<div class="chart">
-		<img src="https://via.placeholder.com/50/0000FF/808080?Text=Sellet Logo" alt="">
-		</div>
-		<div class="chart">
-		<img src="https://via.placeholder.com/50/0000FF/808080?Text=Sellet Logo" alt="">
-		</div>
-		<div class="chart">
-		<img src="https://via.placeholder.com/50/0000FF/808080?Text=Sellet Logo" alt="">
-		</div>
-		<div class="chart">
-		<img src="https://via.placeholder.com/50/0000FF/808080?Text=Sellet Logo" alt="">
-		</div>
-		</div>
-		<div class="bottomLine">
-		<div class="queryDate">
-		<p>22.06.01</p>
-		</div>
-		</div>
-		</section>
-		</article>`;
 	
 	document.querySelector("main").innerHTML += sampleHeader + sampleSellers + sampleSellerEnd;
 	
@@ -180,14 +146,11 @@ function mainFunctions() {
 	
 }
 
-function filter(mainProductName) {
-	let input = searchInput.value.toLowerCase();
-	return !(mainProductName.toLowerCase().indexOf(input) == -1);
-}
-
 let querydata;
 
-let productsList = ["Fiction", "iphone-14-pro"];
+let productsListSortBy = ["ascendingByPrice", "descendingByPrice", "ascendingAccordingToAbc", "descendingAccordingToAbc"];
+let productsListSortData = productsListSortBy[1];
+let productsList = [];
 
 let searchInput = document.querySelector("#search");
 
