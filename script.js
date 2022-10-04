@@ -65,6 +65,7 @@ function makeProductPriceElement(productsListItem, mainProductName, subProductNa
 		<span class="separator"></span>
 		<div class="productMinPrice">
 		<h2>${bestPrice} Ft</h2>
+		<h5>${bestPrice}</h5>
 		</div>
 		</header>
 		</article>
@@ -196,15 +197,18 @@ function mainFunctions() {
 }
 
 function filter(mainProductName) {
-	let input = document.querySelector("#search").value.toLowerCase();
+	let input = searchInput.value.toLowerCase();
 	return !(mainProductName.toLowerCase().indexOf(input) == -1);
 }
 
-		
 let querydata;
 
 let productsList = ["Fiction", "iphone-14-pro"];
 
+let searchInput = document.querySelector("#search");
 
+searchInput.addEventListener('keyup', () => {
+	showProductPrice();
+});
 
-startGetPrice();
+// startGetPrice();
