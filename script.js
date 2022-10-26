@@ -150,7 +150,7 @@ function mainFunctions() {
 let querydata;
 
 let productsListSortBy = ["ascendingByPrice", "descendingByPrice", "ascendingAccordingToAbc", "descendingAccordingToAbc"];
-let productsListSortData = productsListSortBy[1];
+let productsListSortData = productsListSortBy[0];
 let productsList = [];
 
 let searchInput = document.querySelector("#search");
@@ -159,6 +159,49 @@ document.querySelector("footer .innerFooter span:nth-child(1)").addEventListener
 function refreshList() {
 	searchInput.value = "";
 	startGetPrice();
+}
+
+document.querySelector("footer .innerFooter span:nth-child(2)").addEventListener('click', sortList);
+function sortList() {
+	document.querySelector(".footerMenuBoxes").style.height="400px";
+	document.querySelector(".footerMenuBoxes").style.paddingBottom="20px";
+	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="0";
+}
+
+document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(1)").addEventListener('click', sortList1);
+function sortList1() {
+	document.querySelector(".footerMenuBoxes").style.height="0";
+	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
+	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
+	productsListSortData = productsListSortBy[0];
+	showProductPrice();
+}
+
+document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(2)").addEventListener('click', sortList2);
+function sortList2() {
+	document.querySelector(".footerMenuBoxes").style.height="0";
+	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
+	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
+	productsListSortData = productsListSortBy[1];
+	showProductPrice();
+}
+
+document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(3)").addEventListener('click', sortList3);
+function sortList3() {
+	document.querySelector(".footerMenuBoxes").style.height="0";
+	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
+	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
+	productsListSortData = productsListSortBy[2];
+	showProductPrice();
+}
+
+document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(4)").addEventListener('click', sortList4);
+function sortList4() {
+	document.querySelector(".footerMenuBoxes").style.height="0";
+	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
+	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
+	productsListSortData = productsListSortBy[3];
+	showProductPrice();
 }
 
 searchInput.addEventListener('keyup', () => {
