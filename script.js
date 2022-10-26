@@ -24,7 +24,7 @@ function saveServerData(data) {
 
 function showProductPrice() {
 
-	document.querySelector("main").innerHTML = "";
+	document.querySelector("main").innerHTML = `<div class="productsSeparator"></div>`;
 
 	productsList = querydata.sortArray[productsListSortData];
 
@@ -56,6 +56,9 @@ function showProductPrice() {
 			makeProductPriceElement(queryDate, productsListItem, mainProductName, subProductName, productSeller, productName, productPrice, productLink);
 		}
 	}
+
+	mainFunctions();
+
 }
 
 function filter(mainProductName) {
@@ -64,17 +67,18 @@ function filter(mainProductName) {
 }
 
 function makeProductPriceElement(queryDate, productsListItem, mainProductName, subProductName, productSeller, productName, productPrice, productLink) {
-	
-	let bestPrice = Math.min(...productPrice).toLocaleString('hu-HU');
 
-	if(bestPrice == 0) {
+	if(productPrice.length == 0) {
 		return
 	};
 
-	let sampleHeader = `<article class="bestPrice">
+	let bestPrice = Math.min(...productPrice).toLocaleString('hu-HU');
+
+	let sampleHeader = `<div class="fullQueryProduct">
+		<article class="bestPrice">
 		<header>
 		<div class="productPic">
-		<img src="https://via.placeholder.com/200x200.png?text=${productsListItem}" alt="${productsListItem}">
+		<img src="./img/products/${productsListItem}.jpg" alt="${productsListItem}">
 		</div>
 		<span class="separator"></span>
 		<div class="productName">
@@ -87,6 +91,7 @@ function makeProductPriceElement(queryDate, productsListItem, mainProductName, s
 		<h5>${queryDate}</h5>
 		</div>
 		</header>
+		<div class="insetBorderHover"></div>
 		</article>
 		<article class="sellerBox">
 		<div class="wrapper">
@@ -101,7 +106,7 @@ function makeProductPriceElement(queryDate, productsListItem, mainProductName, s
 		let sampleSeller = `
 			<section class="seller">
 			<div class="sellerLogo">
-			<img src="https://via.placeholder.com/50x50.png?text=${productSeller[k]}" alt="${productSeller[k]} logo">
+			<img src="./img/sellers/${productSeller[k]}.jpg" alt="${productSeller[k]} logo">
 			</div>
 			<div class="sellerProductName">
 			<h4>${productName[k]}</h4>
@@ -124,26 +129,22 @@ function makeProductPriceElement(queryDate, productsListItem, mainProductName, s
 		<div class="innerRadius radRight"></div>
 		</div>
 		</div>
-		</article>`;
+		</article>
+		</div>
+		<div class="productsSeparator"></div>`;
 	
 	document.querySelector("main").innerHTML += sampleHeader + sampleSellers + sampleSellerEnd;
 	
-	mainFunctions()
 }
 
 function mainFunctions() {
-	let open = false
 	
-	// document.querySelectorAll("main > article.bestPrice").forEach((el)=> el.addEventListener('click',()=>{
-	// 	open ? document.querySelector("main article.sellerBox").style.height = "0" : document.querySelector("main article.sellerBox").style.height = document.querySelector("main article.sellerBox .wrapper").clientHeight + document.querySelector("main article.sellerBox .chartBox").clientHeight + "px";
-	// 	open = !open;
-	// }))
+	document.querySelectorAll("main article.bestPrice").forEach((el)=> el.addEventListener('click', dropDown));
+	
+	function dropDown(e) {
+	e.srcElement.parentElement.parentElement.children[1].clientHeight == 0 ? e.srcElement.parentElement.parentElement.children[1].style.height = e.srcElement.parentElement.parentElement.children[1].children[0].clientHeight + "px" : e.srcElement.parentElement.parentElement.children[1].style.height = "0";
+	}
 
-	document.querySelectorAll("main > article.bestPrice").forEach((el)=> el.addEventListener('click',()=>{
-		open ? document.querySelector("main article.sellerBox").style.height = "0" : document.querySelector("main article.sellerBox").style.height = document.querySelector("main article.sellerBox .wrapper").clientHeight + "px";
-		open = !open;
-	}))
-	
 }
 
 let querydata;
@@ -153,6 +154,12 @@ let productsListSortData = productsListSortBy[1];
 let productsList = [];
 
 let searchInput = document.querySelector("#search");
+
+document.querySelector("footer .innerFooter span:nth-child(1)").addEventListener('click', refreshList);
+function refreshList() {
+	searchInput.value = "";
+	startGetPrice();
+}
 
 searchInput.addEventListener('keyup', () => {
 	showProductPrice();
