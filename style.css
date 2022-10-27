@@ -72,7 +72,7 @@ body {
 	background: var(--background-color);
 	display: grid;
 	grid-template-columns: minmax(3rem, auto) minmax(3rem, 960px) minmax(3rem, auto);
-	grid-template-rows: calc(50px + env(safe-area-inset-top)) 1fr calc(50px + env(safe-area-inset-bottom));
+	grid-template-rows: calc(10px + env(safe-area-inset-top)) 1fr calc(50px + env(safe-area-inset-bottom));
 	color: var(--font-main-color);
 	text-shadow: 1px 1px 2px var(--background-color);
 }
@@ -88,6 +88,8 @@ header.mainHeader {
 	text-align: center;
 	z-index: 999;
 	box-shadow: 0 15px 9px 4px var(--background-color);
+	padding-bottom: 50px;
+	transition: padding-bottom .3s ease-in-out;
 }
 
 header.mainHeader input#search {
@@ -321,6 +323,21 @@ main article.sellerBox article.sellers section.seller .sellerProductPrice h3 {
 	font-size: 1rem;
 }
 
+main article.sellerBox article.sellers section.seller .sellerProductPrice h3 span {
+	position: relative;
+}
+
+main article.sellerBox article.sellers section.seller .sellerProductPrice h3 span span.specialPrice {
+	font-size: .65rem;
+	padding: .1rem;
+	position: absolute;
+	top: -.5rem;
+	right: -.8rem;
+	border: 1px dotted var(--font-main-color);
+	border-radius: 50%;
+	box-shadow: 1px 1px 3px var(--background-color);
+}
+
 main article.sellerBox article.sellers section.seller .goPageLink{
 	text-align: right;
 }
@@ -341,7 +358,7 @@ main article.sellerBox article.sellers section.seller .goPageLink a span.materia
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
-	padding-bottom: 20px;
+	padding-bottom: 0;
 }
 
 .footerMenuBoxes .sortBox,
@@ -367,10 +384,11 @@ main article.sellerBox article.sellers section.seller .goPageLink a span.materia
 .footerMenuBoxes .sortBox h6 {
 	font-size: 1rem;
 	font-weight: 300;
-	padding: .5rem;
+	padding: .7rem;
 	border: 1px solid;
 	border-radius: 1rem;
 	cursor: pointer;
+	text-shadow: none;
 }
 
 .footerMenuBoxes .sortBox h6:hover {
@@ -471,13 +489,13 @@ footer span.material-symbols-outlined:hover {
 		font-size: 1rem;
 	}
 	main article.sellerBox article.sellers section.seller {
-		grid-template-columns: 50px 1fr 1fr 40px;
+		grid-template-columns: 50px 1fr 40px;
 	}
 	main article.sellerBox article.sellers section.seller .sellerProductName {
 		display: none;
 	}
 	main article.sellerBox article.sellers section.seller .sellerProductPrice {
-		grid-area: 1/2/2/4;
+		grid-area: 1/2/2/3;
 		text-align: center;
 	}
 	main article.sellerBox article.sellers section.seller .sellerProductPrice h3 {
@@ -489,6 +507,11 @@ footer span.material-symbols-outlined:hover {
 	}
 	main article.sellerBox article.sellers {
 		padding: .7rem .7rem .7rem 1rem;
+	}
+	footer span.material-symbols-outlined {
+		font-size: 1.8rem;
+		padding: .2rem .9rem;
+		margin: 0 .9rem;
 	}
 }
 
@@ -546,8 +569,86 @@ footer span.material-symbols-outlined:hover {
 		border-bottom-left-radius: 1rem;
 	}
 	footer span.material-symbols-outlined {
+		font-size: 1.6rem;
+		padding: .2rem .75rem;
+		margin: 0 .55rem;
+	}
+}
+
+@media screen and (max-height: 450px) and (min-width: 451px) {
+  body {
+		grid-template-columns: minmax(2rem, auto) minmax(2rem, 960px) minmax(2rem, auto);
+  }
+	main article.bestPrice {
+		border-radius: 1rem;
+	}
+	main article.bestPrice header {
+		grid-template-columns: 100px 1px 1fr;
+		grid-template-rows: 1.5fr 1px 1fr;
+		height: 100px;
+		border-radius: 1rem;
+	}
+	article.bestPrice .insetBorderHover {
+		border-radius: 1rem;
+	}
+	main article.bestPrice header div:not(div:first-child) {
+		margin: .2rem;
+	}
+	main article.bestPrice header .productPic {
+		grid-area: 1/1/4/2;
+		height: 98px;
+		width: 100px;
+	}
+	main article.bestPrice header .productPic img {
+		height: 98px;
+		width: 100px;
+	}
+	main article.bestPrice header span.separator {
+		grid-area: 1/2/4/3;
+	}
+	main article.bestPrice header div:not(div:first-child).productName {
+		margin-bottom: 0.1rem;
+	}
+	main article.bestPrice header .productName {
+		grid-area: 1/3/2/4;
+	}
+	main article.bestPrice header span.separator:nth-child(4) {
+		grid-area: 2/3/3/4;
+		height: 1px;
+		width: 100%;
+	}
+	main article.bestPrice header div:not(div:first-child).productMinPrice {
+		margin-top: 0.1rem;
+		margin-right: .5rem;
+	}
+	main article.bestPrice header .productMinPrice {
+		grid-area: 3/3/4/4;
+	}
+	main article.bestPrice h2 {
+		font-size: 1rem;
+	}
+	main article.bestPrice header .productName h3 {
+		font-size: .8rem;
+	}
+	main article.bestPrice header .productMinPrice h5 {
+		font-size: .4rem;
+		margin-right: .5rem;
+	}
+	main article.sellerBox {
+		width: calc(100% - 5rem);
+	}
+	main article.sellerBox div.radius div.innerRadius.radLeft {
+		border-top-right-radius: 2rem;
+	}
+	main article.sellerBox div.radius div.innerRadius.radRight {
+		border-top-left-radius: 2rem;
+	}
+	main article.sellerBox article.sellers {
+		border-bottom-right-radius: 1rem;
+		border-bottom-left-radius: 1rem;
+	}
+	footer span.material-symbols-outlined {
 		font-size: 1.8rem;
 		padding: .2rem .9rem;
 	}
 }
-

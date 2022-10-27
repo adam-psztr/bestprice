@@ -37,23 +37,29 @@ function showProductPrice() {
 		queryDate = new Date(querydata[productsListItem].queryDate).toLocaleDateString("hu-HU") + " (" + new Date(querydata[productsListItem].queryDate).toLocaleTimeString("hu-HU") + ")";
 		mainProductName = querydata[productsListItem].mainProductName;
 		subProductName = querydata[productsListItem].subProductName;
-		productSeller = [], productName = [], productPrice = [], productLink = [];
+		productSeller = [], productName = [], productPrice = [], productDiscountPrice = [], productLink = [];
 		
 		for(let j=0; j<querydata[productsList[i]].productSellers.length; j++) {
 			if(!querydata[productsListItem].productSellers[j] ||
 				querydata[productsList[i]].productSellers[j].productSeller == "X" ||
 				querydata[productsList[i]].productSellers[j].productName == "X" ||
-				querydata[productsList[i]].productSellers[j].productPrice == "0") {
+				querydata[productsList[i]].productSellers[j].productPrice == "999999999") {
 				continue;
 			};
 			productSeller.push(querydata[productsList[i]].productSellers[j].productSeller);
 			productName.push(querydata[productsList[i]].productSellers[j].productName);
-			productPrice.push(querydata[productsList[i]].productSellers[j].productPrice);
+			if (querydata[productsList[i]].productSellers[j].productDiscountPrice > querydata[productsList[i]].productSellers[j].productPrice) {
+				productPrice.push(querydata[productsList[i]].productSellers[j].productPrice);
+				productDiscountPrice.push(false);
+			} else {
+				productPrice.push(querydata[productsList[i]].productSellers[j].productDiscountPrice);
+				productDiscountPrice.push(true);
+			}
 			productLink.push(querydata[productsList[i]].productSellers[j].productLink);
 		};
 
 		if (filter(mainProductName)) {
-			makeProductPriceElement(queryDate, productsListItem, mainProductName, subProductName, productSeller, productName, productPrice, productLink);
+			makeProductPriceElement(queryDate, productsListItem, mainProductName, subProductName, productSeller, productName, productPrice, productDiscountPrice, productLink);
 		}
 	}
 
@@ -66,7 +72,7 @@ function filter(mainProductName) {
 	return !(mainProductName.toLowerCase().indexOf(input) == -1);
 }
 
-function makeProductPriceElement(queryDate, productsListItem, mainProductName, subProductName, productSeller, productName, productPrice, productLink) {
+function makeProductPriceElement(queryDate, productsListItem, mainProductName, subProductName, productSeller, productName, productPrice, productDiscountPrice, productLink) {
 
 	if(productPrice.length == 0) {
 		return
@@ -112,7 +118,11 @@ function makeProductPriceElement(queryDate, productsListItem, mainProductName, s
 			<h4>${productName[k]}</h4>
 			</div>
 			<div class="sellerProductPrice">
-			<h3>${parseInt(productPrice[k]).toLocaleString('hu-HU')} Ft</h3>
+			<h3>${parseInt(productPrice[k]).toLocaleString('hu-HU')} <span>Ft
+			${productDiscountPrice[k] ?
+			'<span class="material-symbols-outlined specialPrice">percent</span>' : ""}
+			</span>
+			</h3>
 			</div>
 			<div class="goPageLink">
 			<a href="${productLink[k]}" target="_blank">
@@ -161,11 +171,20 @@ function refreshList() {
 	startGetPrice();
 }
 
+let openMenuBoxes = false;
 document.querySelector("footer .innerFooter span:nth-child(2)").addEventListener('click', sortList);
 function sortList() {
-	document.querySelector(".footerMenuBoxes").style.height="400px";
-	document.querySelector(".footerMenuBoxes").style.paddingBottom="20px";
-	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="0";
+	if(openMenuBoxes) {
+		document.querySelector(".footerMenuBoxes").style.height="0";
+		document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
+		document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
+		openMenuBoxes = false;
+	} else {
+		document.querySelector(".footerMenuBoxes").style.height="400px";
+		document.querySelector(".footerMenuBoxes").style.paddingBottom="20px";
+		document.querySelector(".footerMenuBoxes .sortBox").style.bottom="0";
+		openMenuBoxes = true;
+	}
 }
 
 document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(1)").addEventListener('click', sortList1);
@@ -173,8 +192,11 @@ function sortList1() {
 	document.querySelector(".footerMenuBoxes").style.height="0";
 	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
 	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
+	openMenuBoxes = false;
 	productsListSortData = productsListSortBy[0];
 	showProductPrice();
+	document.querySelectorAll(".footerMenuBoxes .sortBox h6").forEach((el) => el.classList.remove("selected"));
+	document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(1)").classList.add("selected");
 }
 
 document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(2)").addEventListener('click', sortList2);
@@ -182,8 +204,11 @@ function sortList2() {
 	document.querySelector(".footerMenuBoxes").style.height="0";
 	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
 	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
+	openMenuBoxes = false;
 	productsListSortData = productsListSortBy[1];
 	showProductPrice();
+	document.querySelectorAll(".footerMenuBoxes .sortBox h6").forEach((el) => el.classList.remove("selected"));
+	document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(2)").classList.add("selected");
 }
 
 document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(3)").addEventListener('click', sortList3);
@@ -191,8 +216,11 @@ function sortList3() {
 	document.querySelector(".footerMenuBoxes").style.height="0";
 	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
 	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
+	openMenuBoxes = false;
 	productsListSortData = productsListSortBy[2];
 	showProductPrice();
+	document.querySelectorAll(".footerMenuBoxes .sortBox h6").forEach((el) => el.classList.remove("selected"));
+	document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(3)").classList.add("selected");
 }
 
 document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(4)").addEventListener('click', sortList4);
@@ -200,8 +228,26 @@ function sortList4() {
 	document.querySelector(".footerMenuBoxes").style.height="0";
 	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
 	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
+	openMenuBoxes = false;
 	productsListSortData = productsListSortBy[3];
 	showProductPrice();
+	document.querySelectorAll(".footerMenuBoxes .sortBox h6").forEach((el) => el.classList.remove("selected"));
+	document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(4)").classList.add("selected");
+}
+
+let openSearch = false;
+document.querySelector("footer .innerFooter span:nth-child(3)").addEventListener('click', searchBtnToggle);
+function searchBtnToggle() {
+	if(openSearch) {
+		document.querySelector("body").style.gridTemplateRows="calc(10px + env(safe-area-inset-top)) 1fr calc(50px + env(safe-area-inset-bottom))";
+		document.querySelector("header.mainHeader").style.paddingBottom="50px";
+		openSearch = false;
+	} else {
+		document.querySelector("header.mainHeader").style.paddingBottom="0";
+		document.querySelector("body").style.gridTemplateRows="calc(50px + env(safe-area-inset-top)) 1fr calc(50px + env(safe-area-inset-bottom))";
+		openSearch = true;
+		document.querySelector("header.mainHeader #search").focus();
+	}
 }
 
 searchInput.addEventListener('keyup', () => {
