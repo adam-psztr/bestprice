@@ -532,6 +532,10 @@ footer .innerFooter > span.material-symbols-outlined:hover > span {
 		padding: .2rem .9rem;
 		margin: 0 .9rem;
 	}
+	footer .innerFooter > span.material-symbols-outlined > span {
+		font-size: 1.45rem;
+		right: 13px;
+	}
 }
 
 @media screen and (max-width: 450px) {
@@ -591,6 +595,10 @@ footer .innerFooter > span.material-symbols-outlined:hover > span {
 		font-size: 1.6rem;
 		padding: .2rem .75rem;
 		margin: 0 .55rem;
+	}
+	footer .innerFooter > span.material-symbols-outlined > span {
+		font-size: 1.35rem;
+		right: 10px;
 	}
 }
 
@@ -669,6 +677,10 @@ footer .innerFooter > span.material-symbols-outlined:hover > span {
 	footer .innerFooter > span.material-symbols-outlined {
 		font-size: 1.8rem;
 		padding: .2rem .9rem;
+	}
+	footer .innerFooter > span.material-symbols-outlined > span {
+		font-size: 1.45rem;
+		right: 13px;
 	}
 	.footerMenuBoxes .sortBox,
 	.footerMenuBoxes .settingsBox {
