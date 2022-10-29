@@ -242,16 +242,25 @@ function searchBtnToggle() {
 		document.querySelector("body").style.gridTemplateRows="calc(10px + env(safe-area-inset-top)) 1fr calc(50px + env(safe-area-inset-bottom))";
 		document.querySelector("header.mainHeader").style.paddingBottom="50px";
 		openSearch = false;
+		searchInput.value = "";
+		showProductPrice();
 	} else {
 		document.querySelector("header.mainHeader").style.paddingBottom="0";
 		document.querySelector("body").style.gridTemplateRows="calc(50px + env(safe-area-inset-top)) 1fr calc(50px + env(safe-area-inset-bottom))";
 		openSearch = true;
-		document.querySelector("header.mainHeader #search").focus();
+		searchInput.focus();
 	}
 }
+document.querySelector("body").addEventListener("keyup", function(e) {
+});
 
-searchInput.addEventListener('keyup', () => {
-	showProductPrice();
+searchInput.addEventListener('keyup', (e) => {
+	if (e.key === "Enter") {
+		e.preventDefault();
+		searchInput.blur(); 
+	} else {
+		showProductPrice();
+	}
 });
 
 startGetPrice();

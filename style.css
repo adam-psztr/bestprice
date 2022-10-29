@@ -52,6 +52,7 @@
 
 html, body {
 	width: 100%;
+	height: 100%;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
@@ -60,7 +61,6 @@ html, body {
 }
 
 html {
-	height: calc(100% + env(safe-area-inset-top) + env(safe-area-inset-bottom));
 	background-color: var(--background-color);
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 100;
@@ -68,13 +68,13 @@ html {
 }
 
 body {
-	height: 100%;
 	background: var(--background-color);
 	display: grid;
 	grid-template-columns: minmax(3rem, auto) minmax(3rem, 960px) minmax(3rem, auto);
 	grid-template-rows: calc(10px + env(safe-area-inset-top)) 1fr calc(50px + env(safe-area-inset-bottom));
 	color: var(--font-main-color);
 	text-shadow: 1px 1px 2px var(--background-color);
+	padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 a {
@@ -411,7 +411,7 @@ footer {
 	justify-content: center;
 }
 
-footer span.material-symbols-outlined {
+footer .innerFooter > span.material-symbols-outlined {
 	font-size: 2rem;
 	color: var(--main-theme-color);
 	padding: .2rem 1rem;
@@ -420,10 +420,29 @@ footer span.material-symbols-outlined {
 	margin: 0 1rem;
 }
 
-footer span.material-symbols-outlined:hover {
+footer .innerFooter > span.material-symbols-outlined:hover {
 	text-shadow: 0 0 .3rem var(--main-theme-color);
 	cursor: pointer;
 	box-shadow: inset 0 0 .2rem var(--main-theme-color);
+}
+
+footer .innerFooter > span.material-symbols-outlined:nth-child(4){
+	position: relative;
+}
+
+footer .innerFooter > span.material-symbols-outlined > span {
+	font-size: 1.6rem;
+	position: absolute;
+	top: 1px;
+	right: 14px;
+	text-shadow: none;
+	background: -webkit-linear-gradient(var(--main-theme-color), var(--font-main-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+footer .innerFooter > span.material-symbols-outlined:hover > span {
+	text-shadow: 0 0 3px var(--main-theme-color), 2px -1px 3px var(--background-color);
 }
 
 @media screen and (max-width: 700px) {
@@ -508,7 +527,7 @@ footer span.material-symbols-outlined:hover {
 	main article.sellerBox article.sellers {
 		padding: .7rem .7rem .7rem 1rem;
 	}
-	footer span.material-symbols-outlined {
+	footer .innerFooter > span.material-symbols-outlined {
 		font-size: 1.8rem;
 		padding: .2rem .9rem;
 		margin: 0 .9rem;
@@ -568,7 +587,7 @@ footer span.material-symbols-outlined:hover {
 		border-bottom-right-radius: 1rem;
 		border-bottom-left-radius: 1rem;
 	}
-	footer span.material-symbols-outlined {
+	footer .innerFooter > span.material-symbols-outlined {
 		font-size: 1.6rem;
 		padding: .2rem .75rem;
 		margin: 0 .55rem;
@@ -577,7 +596,7 @@ footer span.material-symbols-outlined:hover {
 
 @media screen and (max-height: 450px) and (min-width: 451px) {
   body {
-		grid-template-columns: minmax(2rem, auto) minmax(2rem, 960px) minmax(2rem, auto);
+		grid-template-columns: minmax(1.5rem, auto) minmax(1.5rem, 960px) minmax(1.5rem, auto);
   }
 	main article.bestPrice {
 		border-radius: 1rem;
@@ -647,8 +666,16 @@ footer span.material-symbols-outlined:hover {
 		border-bottom-right-radius: 1rem;
 		border-bottom-left-radius: 1rem;
 	}
-	footer span.material-symbols-outlined {
+	footer .innerFooter > span.material-symbols-outlined {
 		font-size: 1.8rem;
 		padding: .2rem .9rem;
+	}
+	.footerMenuBoxes .sortBox,
+	.footerMenuBoxes .settingsBox {
+		height: 190px;
+	}
+	.footerMenuBoxes .sortBox h6 {
+		font-size: .85rem;
+		padding: .5rem;
 	}
 }
