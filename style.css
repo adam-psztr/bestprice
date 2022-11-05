@@ -1,34 +1,4 @@
 :root {
-	--eerie-black: rgba(29, 29, 29, 1);
-	--jet: rgba(55, 55, 55, 1);
-	--cultured: rgba(245, 245, 245, 1);
-	--gainsboro: rgba(224, 224, 224, 1);
-	--gray-web: rgba(124, 124, 124, 1);
-	--sunray: rgba(222, 165, 75, 1);
-	--orange-yellow-crayola: rgba(242, 205, 93, 1);
-	--cadet-grey: rgba(141, 167, 190, 1);
-	--columbia-blue: rgba(205, 230, 245, 1);
-	--ao-english: rgba(21, 127, 31, 1);
-	--emerald: rgba(76, 185, 99, 1);
-	--honey-yellow: rgba(247, 179, 43, 1);
-	--blond: rgba(252, 246, 177, 1);
-	--light-coral: rgba(246, 130, 140, 1);
-	--mauvelous: rgba(245, 156, 169, 1);
-	--cadet-blue: rgba(88, 164, 176, 1);
-	--middle-purple: rgba(210, 130, 166, 1);
-	--honolulu-blue: rgba(14, 107, 168, 1);
-	--non-photo-blue: rgba(166, 225, 250, 1);
-	--laser-lemon: rgba(252, 255, 108, 1);
-	--yellow-green-crayola: rgba(215, 255, 171, 1);
-	--flame: rgba(228, 87, 46, 1);
-	--tiffany-blue: rgba(23, 190, 187, 1);
-	--sunglow: rgba(255, 201, 20, 1);
-	--green-ryb: rgba(118, 176, 65, 1);
-	--royal-purple: rgba(114, 78, 145, 1);
-	--african-violet: rgba(176, 132, 204, 1);
-	--orange-pantone: rgba(255, 87, 10, 1);
-	--cerulean-crayola: rgba(0, 165, 207, 1);
-
 	--background-color: rgba(29, 29, 29, 1);
 	--product-background-color: rgba(55, 55, 55, 1);
 	--main-theme-color: rgba(222, 165, 75, 1);
@@ -403,11 +373,12 @@ main article.sellerBox article.sellers section.seller .goPageLink a span.materia
 	border-bottom: none;
 }
 
-.footerMenuBoxes .settingsBox div select{
+.footerMenuBoxes .settingsBox div select {
 	background-color: var(--background-color);
 	border-radius: .3rem;
 	color: var(--font-main-color);
 	font-weight: 300;
+	text-align: center;
 }
 
 .footerMenuBoxes .sortBox h6 {
@@ -425,6 +396,7 @@ main article.sellerBox article.sellers section.seller .goPageLink a span.materia
 	font-weight: 100;
 	padding: .1rem;
 	text-shadow: none;
+	letter-spacing: .1rem;
 }
 
 .footerMenuBoxes .sortBox h6:hover {

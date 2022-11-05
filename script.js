@@ -283,4 +283,51 @@ function settingsList() {
 	}
 }
 
+let colors = {
+	"eerie-black": "rgb(29, 29, 29)",
+	"jet": "rgb(55, 55, 55)",
+	"cultured": "rgb(245, 245, 245)",
+	"gainsboro": "rgb(224, 224, 224)",
+	"gray-web": "rgb(124, 124, 124)",
+	"sunray": "rgb(222, 165, 75)",
+	"orange-yellow-crayola": "rgb(242, 205, 93)",
+	"cadet-grey": "rgb(141, 167, 190)",
+	"columbia-blue": "rgb(205, 230, 245)",
+	"ao-english": "rgb(21, 127, 31)",
+	"emerald": "rgb(76, 185, 99)",
+	"honey-yellow": "rgb(247, 179, 43)",
+	"blond": "rgb(252, 246, 177)",
+	"light-coral": "rgb(246, 130, 140)",
+	"mauvelous": "rgb(245, 156, 169)",
+	"cadet-blue": "rgb(88, 164, 176)",
+	"middle-purple": "rgb(210, 130, 166)",
+	"honolulu-blue": "rgb(14, 107, 168)",
+	"non-photo-blue": "rgb(166, 225, 250)",
+	"laser-lemon": "rgb(252, 255, 108)",
+	"yellow-green-crayola": "rgb(215, 255, 171)",
+	"flame": "rgb(228, 87, 46)",
+	"tiffany-blue": "rgb(23, 190, 187)",
+	"sunglow": "rgb(255, 201, 20)",
+	"green-ryb": "rgb(118, 176, 65)",
+	"royal-purple": "rgb(114, 78, 145)",
+	"african-violet": "rgb(176, 132, 204)",
+	"orange-pantone": "rgb(255, 87, 10)",
+	"cerulean-crayola": "rgb(0, 165, 207)"
+}
+document.querySelector("#backgroundColor").addEventListener( 'change', () => {
+	document.documentElement.style.setProperty("--background-color", colors[document.querySelector("#backgroundColor").selectedOptions[0].value]);
+})
+document.querySelector("#productBackgroundColor").addEventListener( 'change', () => {
+	document.documentElement.style.setProperty("--product-background-color", colors[document.querySelector("#productBackgroundColor").selectedOptions[0].value]);
+})
+document.querySelector("#mainThemeColor").addEventListener( 'change', () => {
+	document.documentElement.style.setProperty("--main-theme-color", colors[document.querySelector("#mainThemeColor").selectedOptions[0].value]);
+})
+document.querySelector("#fontMainColor").addEventListener( 'change', () => {
+	document.documentElement.style.setProperty("--font-main-color", colors[document.querySelector("#fontMainColor").selectedOptions[0].value]);
+})
+document.querySelector("#fontSecondaryColor").addEventListener( 'change', () => {
+	document.documentElement.style.setProperty("--font-secondary-color", colors[document.querySelector("#fontSecondaryColor").selectedOptions[0].value]);
+})
+
 startGetPrice();
