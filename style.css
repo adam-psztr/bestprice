@@ -20,6 +20,7 @@
 }
 
 html, body {
+	height: 100%;
 	width: 100%;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -29,7 +30,6 @@ html, body {
 }
 
 html {
-	height: 100vh;
 	background-color: var(--background-color);
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 100;
@@ -37,7 +37,6 @@ html {
 }
 
 body {
-	height: 100%;
 	background: var(--background-color);
 	display: grid;
 	grid-template-columns: minmax(3rem, auto) minmax(3rem, 960px) minmax(3rem, auto);

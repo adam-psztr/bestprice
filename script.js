@@ -1,3 +1,7 @@
+if (window.navigator.standalone == true) {
+	document.querySelector("html").style.height = "100vh";
+}
+
 function getServerData(url){
 	let fetchOptions = {
 		method: "GET",
