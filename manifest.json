@@ -1,0 +1,32 @@
+{
+  "name": "BEST PRICE",
+  "short_name": "bestPRICE",
+	"description": "BEST PRICE web app.",
+  "theme_color": "#000",
+  "background_color": "#000",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "./index.html",
+  "icons": [{
+    "src": "img/icons/apple-touch-icon-72x72.png",
+    "sizes": "72x72",
+    "type": "image/png"
+  }, {
+    "src": "img/icons/favicon-96x96.png",
+    "sizes": "96x96",
+    "type": "image/png"
+  }, {
+    "src": "img/icons/apple-touch-icon-144x144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "img/icons/favicon-196x196.png",
+    "sizes": "196x196",
+    "type": "image/png"
+  }, {
+    "src": "img/icons/apple-touch-icon.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }]
+}
