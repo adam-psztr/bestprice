@@ -21,7 +21,6 @@
 
 html, body {
 	width: 100%;
-	height: 100%;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
@@ -30,6 +29,7 @@ html, body {
 }
 
 html {
+	height: 100vh;
 	background-color: var(--background-color);
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 100;
@@ -37,6 +37,7 @@ html {
 }
 
 body {
+	height: 100%;
 	background: var(--background-color);
 	display: grid;
 	grid-template-columns: minmax(3rem, auto) minmax(3rem, 960px) minmax(3rem, auto);
@@ -57,7 +58,7 @@ header.mainHeader {
 	text-align: center;
 	z-index: 999;
 	box-shadow: 0 15px 9px 4px var(--background-color);
-	padding-bottom: 50px;
+	padding-bottom: calc(50px + env(safe-area-inset-top));
 	transition: padding-bottom .3s ease-in-out;
 }
 
@@ -417,6 +418,12 @@ footer {
 	box-shadow: 0 -15px 9px 4px var(--background-color);
 	display: flex;
 	justify-content: center;
+}
+
+footer .innerFooter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 footer .innerFooter > span.material-symbols-outlined {
