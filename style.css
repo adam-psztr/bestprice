@@ -40,7 +40,7 @@ body {
 	background: var(--background-color);
 	display: grid;
 	grid-template-columns: minmax(3rem, auto) minmax(3rem, 960px) minmax(3rem, auto);
-	grid-template-rows: calc(10px + env(safe-area-inset-top)) 1fr calc(50px + env(safe-area-inset-bottom));
+	grid-template-rows: 10px 1fr 50px;
 	color: var(--font-main-color);
 	text-shadow: 1px 1px 2px var(--background-color);
 	padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
