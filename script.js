@@ -253,14 +253,14 @@ let openSearch = false;
 document.querySelector("footer .innerFooter span:nth-child(3)").addEventListener('click', searchBtnToggle);
 function searchBtnToggle() {
 	if(openSearch) {
-		document.querySelector("body").style.gridTemplateRows="calc(10px + env(safe-area-inset-top)) 1fr calc(50px + env(safe-area-inset-bottom))";
+		document.querySelector("body").style.gridTemplateRows="10px 1fr 50px";
 		document.querySelector("header.mainHeader").style.paddingBottom="50px";
 		openSearch = false;
 		searchInput.value = "";
 		showProductPrice();
 	} else {
 		document.querySelector("header.mainHeader").style.paddingBottom="0";
-		document.querySelector("body").style.gridTemplateRows="calc(50px + env(safe-area-inset-top)) 1fr calc(50px + env(safe-area-inset-bottom))";
+		document.querySelector("body").style.gridTemplateRows="50px 1fr 50px";
 		openSearch = true;
 		searchInput.focus();
 	}
