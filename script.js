@@ -258,7 +258,7 @@ document.querySelector("footer .innerFooter span:nth-child(3)").addEventListener
 function searchBtnToggle() {
 	if(openSearch) {
 		document.querySelector("body").style.gridTemplateRows="10px 1fr 50px";
-		document.querySelector("header.mainHeader").style.paddingBottom="50px";
+		document.querySelector("header.mainHeader").style.paddingBottom="calc(50px + env(safe-area-inset-top))";
 		openSearch = false;
 		searchInput.value = "";
 		showProductPrice();
