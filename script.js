@@ -159,8 +159,12 @@ function mainFunctions() {
 
 let querydata;
 
+let bySort = parseInt(localStorage.getItem("sort") || 0);
+
+document.querySelector(`.footerMenuBoxes .sortBox h6:nth-child(${bySort + 1})`).classList.add("selected");
+
 let productsListSortBy = ["ascendingByPrice", "descendingByPrice", "ascendingAccordingToAbc", "descendingAccordingToAbc"];
-let productsListSortData = productsListSortBy[0];
+let productsListSortData = productsListSortBy[bySort];
 let productsList = [];
 
 let searchInput = document.querySelector("#search");
@@ -195,7 +199,9 @@ function sortList1() {
 	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
 	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
 	openMenuSortBox = false;
-	productsListSortData = productsListSortBy[0];
+	bySort = 0;
+	localStorage.setItem("sort", 0);
+	productsListSortData = productsListSortBy[bySort];
 	showProductPrice();
 	document.querySelectorAll(".footerMenuBoxes .sortBox h6").forEach((el) => el.classList.remove("selected"));
 	document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(1)").classList.add("selected");
@@ -207,7 +213,9 @@ function sortList2() {
 	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
 	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
 	openMenuSortBox = false;
-	productsListSortData = productsListSortBy[1];
+	bySort = 1;
+	localStorage.setItem("sort", 1);
+	productsListSortData = productsListSortBy[bySort];
 	showProductPrice();
 	document.querySelectorAll(".footerMenuBoxes .sortBox h6").forEach((el) => el.classList.remove("selected"));
 	document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(2)").classList.add("selected");
@@ -219,7 +227,9 @@ function sortList3() {
 	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
 	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
 	openMenuSortBox = false;
-	productsListSortData = productsListSortBy[2];
+	bySort = 2;
+	localStorage.setItem("sort", 2);
+	productsListSortData = productsListSortBy[bySort];
 	showProductPrice();
 	document.querySelectorAll(".footerMenuBoxes .sortBox h6").forEach((el) => el.classList.remove("selected"));
 	document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(3)").classList.add("selected");
@@ -231,7 +241,9 @@ function sortList4() {
 	document.querySelector(".footerMenuBoxes").style.paddingBottom="0";
 	document.querySelector(".footerMenuBoxes .sortBox").style.bottom="-400px";
 	openMenuSortBox = false;
-	productsListSortData = productsListSortBy[3];
+	bySort = 3;
+	localStorage.setItem("sort", 3);
+	productsListSortData = productsListSortBy[bySort];
 	showProductPrice();
 	document.querySelectorAll(".footerMenuBoxes .sortBox h6").forEach((el) => el.classList.remove("selected"));
 	document.querySelector(".footerMenuBoxes .sortBox h6:nth-child(4)").classList.add("selected");
@@ -314,20 +326,40 @@ let colors = {
 	"orange-pantone": "rgb(255, 87, 10)",
 	"cerulean-crayola": "rgb(0, 165, 207)"
 }
+let backgroundColor = localStorage.getItem("backgroundColor") || "eerie-black";
+document.documentElement.style.setProperty("--background-color", colors[backgroundColor]);
+document.querySelector(`#backgroundColor [value=${backgroundColor}]`).selected = true;
 document.querySelector("#backgroundColor").addEventListener( 'change', () => {
 	document.documentElement.style.setProperty("--background-color", colors[document.querySelector("#backgroundColor").selectedOptions[0].value]);
+	localStorage.setItem("backgroundColor", document.querySelector("#backgroundColor").selectedOptions[0].value);
 })
+let productBackgroundColor = localStorage.getItem("productBackgroundColor") || "jet";
+document.documentElement.style.setProperty("--product-background-color", colors[productBackgroundColor]);
+document.querySelector(`#productBackgroundColor [value=${productBackgroundColor}]`).selected = true;
 document.querySelector("#productBackgroundColor").addEventListener( 'change', () => {
 	document.documentElement.style.setProperty("--product-background-color", colors[document.querySelector("#productBackgroundColor").selectedOptions[0].value]);
+	localStorage.setItem("productBackgroundColor", document.querySelector("#productBackgroundColor").selectedOptions[0].value);
 })
+let mainThemeColor = localStorage.getItem("mainThemeColor") || "sunray";
+document.documentElement.style.setProperty("--main-theme-color", colors[mainThemeColor]);
+document.querySelector(`#mainThemeColor [value=${mainThemeColor}]`).selected = true;
 document.querySelector("#mainThemeColor").addEventListener( 'change', () => {
 	document.documentElement.style.setProperty("--main-theme-color", colors[document.querySelector("#mainThemeColor").selectedOptions[0].value]);
+	localStorage.setItem("mainThemeColor", document.querySelector("#mainThemeColor").selectedOptions[0].value);
 })
+let fontMainColor = localStorage.getItem("fontMainColor") || "cultured";
+document.documentElement.style.setProperty("--font-main-color", colors[fontMainColor]);
+document.querySelector(`#fontMainColor [value=${fontMainColor}]`).selected = true;
 document.querySelector("#fontMainColor").addEventListener( 'change', () => {
 	document.documentElement.style.setProperty("--font-main-color", colors[document.querySelector("#fontMainColor").selectedOptions[0].value]);
+	localStorage.setItem("fontMainColor", document.querySelector("#fontMainColor").selectedOptions[0].value);
 })
+let fontSecondaryColor = localStorage.getItem("fontSecondaryColor") || "gray-web";
+document.documentElement.style.setProperty("--font-secondary-color", colors[fontSecondaryColor]);
+document.querySelector(`#fontSecondaryColor [value=${fontSecondaryColor}]`).selected = true;
 document.querySelector("#fontSecondaryColor").addEventListener( 'change', () => {
 	document.documentElement.style.setProperty("--font-secondary-color", colors[document.querySelector("#fontSecondaryColor").selectedOptions[0].value]);
+	localStorage.setItem("fontSecondaryColor", document.querySelector("#fontSecondaryColor").selectedOptions[0].value);
 })
 
 startGetPrice();
